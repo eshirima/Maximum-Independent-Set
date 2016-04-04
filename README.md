@@ -35,16 +35,24 @@ of this vertex followed by the list of neighbours (0-based indices).
 
 # Example.
 4
+
 3 1 2 3
+
 1 0
+
 1 0
+
 1 0
+
 0
+
 1
+
 3 2
 
 # Output
 Write an ordered list of vertex indices as text to the standard-output (separated
 by space). For example, for the graph given above, the output for the optimal
 solution would be
+
 1 2 3
