@@ -15,17 +15,17 @@ int main(int argc, const char * argv[])
     Graph sampleGraph = *new Graph("Graph.txt");
     sampleGraph.printGraph();
     
-    Vertex deleteVertex =  Vertex(2);
-    
-    cout << "*** DELETING VERTEX " << deleteVertex.vertexId << " ***"<< endl;
-    
-    sampleGraph.removeVertex(deleteVertex);
-    
-    sampleGraph.printVertices();
-    
-    sampleGraph.printEdges();
-    
-    sampleGraph.printGraph();
+//    Vertex deleteVertex =  Vertex(2);
+//    
+//    cout << "*** DELETING VERTEX " << deleteVertex.vertexId << " ***"<< endl;
+//    
+//    sampleGraph.removeVertex(deleteVertex);
+//    
+//    sampleGraph.printVertices();
+//    
+//    sampleGraph.printEdges();
+//    
+//    sampleGraph.printGraph();
     
     return 0;
 }
