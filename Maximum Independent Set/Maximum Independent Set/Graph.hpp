@@ -27,6 +27,14 @@ using std::find; using std::tuple;
 using std::get; using std::distance;
 using std::cerr;
 
+
+static struct hasLessNeighbors{
+	bool operator()(const Vertex v1, const Vertex v2)const{
+		return v1.edges.size() > v2.edges.size();
+	}
+};
+
+
 class Graph
 {
 public:
@@ -40,8 +48,9 @@ public:
     void printVertices();
     void printEdges();
     
+	vector<Vertex> totalVertices;
+
 private:
-    vector<Vertex> totalVertices;
     vector<Edge> allEdges;
 };
 
