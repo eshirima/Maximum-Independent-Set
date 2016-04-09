@@ -1,2 +1,8 @@
 *.vcxproj
 Maximum-Independent-Set.vcxproj.filters
+*.tlog
+Debug/Edge.obj
+*.obj
+*.idb
+Debug/vc140.pdb
+*.log
