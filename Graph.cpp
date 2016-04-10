@@ -8,7 +8,7 @@
 
 #include "Graph.hpp"
 
-// O(n squared)
+// O(N)
 Graph::Graph(string fileName)
 {
     if (doesFileExist(fileName))
@@ -91,52 +91,41 @@ void Graph::createVertices(int numberOfVertices)
 }
 
 // O(|V|)
-// TODO: Fix the adjacency bug
-void Graph::removeVertex(Vertex unwantedVertex)
+void Graph::flagVertexAndNeighbours(Vertex unwantedVertex)
 {
     tuple<bool, vector<Vertex>::iterator> vertexResponse = doesVertexExist(unwantedVertex);
     
-    if (get<0>(vertexResponse))
+    if(get<0>(vertexResponse))
     {
         Vertex* unwantedVertexPointer = &totalVertices.at(distance(totalVertices.begin(), get<1>(vertexResponse)));
+        unwantedVertexPointer->isDiscoverable = false;
         
-        // METHOD I: Iterate through all the edges finding the unwanted one
-        unwantedVertexPointer->edges.clear();
+        map<int, Vertex*>vertexNeighboursMap;
         
-        for (vector<Edge>::iterator it = allEdges.begin(); it != allEdges.end(); ++it)
+        // put vertex neigbours in a map
+        for (vector<Edge>::iterator tempIterator = unwantedVertexPointer->edges.begin(); tempIterator != unwantedVertexPointer->edges.end(); ++tempIterator)
         {
-            if (it->start->vertexId == unwantedVertexPointer->vertexId)
+            vertexNeighboursMap[tempIterator->start->vertexId] = tempIterator->start;
+        }
+        
+        // flag the map vertices as not discoverable in the totalVertices
+        for (vector<Vertex>::iterator tempIterator = totalVertices.begin(); tempIterator != totalVertices.end(); ++tempIterator)
+        {
+            if (vertexNeighboursMap.find(tempIterator->vertexId) != vertexNeighboursMap.end())
             {
-                allEdges.erase(it);
-            }
-            else if (it->end->vertexId == unwantedVertexPointer->vertexId)
-            {
-                allEdges.erase(it);
+                tempIterator->isDiscoverable = false;
             }
         }
         
-        // METHOD II: Use the unwanted vertex's edges to delete it.
-        // TODO: Doesn't fully work for the time being
-        
-//        int currentPosition = 0;
-//        for (vector<Edge>::iterator it = unwantedVertexPointer->edges.begin(); it != unwantedVertexPointer->edges.end(); ++it)
-//        {
-//            cout << "Other Side of the edge " << it->otherSide(unwantedVertexPointer).vertexId << endl;
-//            it->otherSide(unwantedVertexPointer).edges.erase(unwantedVertexPointer->edges.begin() + currentPosition);
-//            allEdges.erase(it);
-//            ++currentPosition;
-//        }
-        
-        totalVertices.erase(totalVertices.begin() + distance(totalVertices.begin(), get<1>(vertexResponse)));
+        vertexNeighboursMap.clear();
     }
-    
     else
     {
-        cerr << endl << endl << "Vertex " << unwantedVertex.vertexId << " does not exist in the graph" << endl << endl;
+        cerr << "Vertex " << unwantedVertex.vertexId << " does not exist" << endl << endl;
     }
 }
 
-// O(n squared) or O(|V||E|)
+// O(N squared) or O(|V||E|)
 void Graph::printGraph()
 {
     for (auto vertex : totalVertices)
@@ -164,7 +153,8 @@ void Graph::printVertices()
     {
         if (thisVertex.vertexId != JUNK)
         {
-            cout << thisVertex.vertexId << endl;
+//            cout << thisVertex.vertexId << endl;
+            cout << "Vertex ID: " << thisVertex.vertexId << " Status: " << thisVertex.isDiscoverable << endl;
         }
     }
     

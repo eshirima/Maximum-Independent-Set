@@ -18,6 +18,7 @@
 #include <string>
 #include <sstream>
 #include <tuple>
+#include <map>
 
 using std::vector; using std::fstream;
 using std::string; using std::getline;
@@ -25,7 +26,7 @@ using std::cout; using std::stoi;
 using std::stringstream; using std::endl;
 using std::find; using std::tuple;
 using std::get; using std::distance;
-using std::cerr;
+using std::cerr; using std::map;
 
 class Graph
 {
@@ -35,11 +36,14 @@ public:
     bool doesFileExist(string);
     tuple<bool, vector<Vertex>::iterator> doesVertexExist(Vertex);
     void createVertices(int);
-    void removeVertex(Vertex); // TODO: Fix the other side of the edge bug
+    void flagVertexAndNeighbours(Vertex);
+    
+    // MARK: Print Functions
     void printGraph();
     void printVertices();
     void printEdges();
-
+    
+private:
     vector<Vertex> totalVertices;
     vector<Edge> allEdges;
 };

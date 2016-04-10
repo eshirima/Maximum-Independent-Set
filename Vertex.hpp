@@ -22,9 +22,10 @@ class Vertex
 public:
     
     Vertex();
-    Vertex(int);
+    Vertex(int, bool vertexStatus = true);
     
     int vertexId;
+    bool isDiscoverable;
     vector<Edge> edges;
 };
 

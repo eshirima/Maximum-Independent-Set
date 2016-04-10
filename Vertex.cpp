@@ -11,9 +11,11 @@
 Vertex::Vertex()
 {
     vertexId = JUNK;
+    isDiscoverable = true;
 }
 
-Vertex::Vertex(int info)
+Vertex::Vertex(int info, bool vertexStatus)
 {
     vertexId = info;
+    isDiscoverable = vertexStatus;
 }

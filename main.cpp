@@ -10,26 +10,27 @@
 #include "Graph.hpp"
 #include "Edge.hpp"
 
-
 int main(int argc, const char * argv[])
 {
-	Graph sampleGraph = *new Graph("Graph.txt");
-	//sampleGraph.printGraph();
-
-
-	sampleGraph.printGraph();
-
-	//    Vertex deleteVertex =  Vertex(2);
-	//    
-	//    cout << "*** DELETING VERTEX " << deleteVertex.vertexId << " ***"<< endl;
-	//    
-	//    sampleGraph.removeVertex(deleteVertex);
-	//    
-	//    sampleGraph.printVertices();
-	//    
-	//    sampleGraph.printEdges();
-	//    
-	//    sampleGraph.printGraph();
-
-	return 0;
+    Graph sampleGraph = *new Graph("Graph.txt");
+    sampleGraph.printGraph();
+    
+    Vertex deleteVertex =  Vertex(41406);
+    
+    sampleGraph.flagVertexAndNeighbours(deleteVertex);
+    
+    sampleGraph.printVertices();
+    
+    //
+    //    cout << "*** DELETING VERTEX " << deleteVertex.vertexId << " ***"<< endl;
+    //
+    //    sampleGraph.removeVertex(deleteVertex);
+    //
+    //    sampleGraph.printVertices();
+    //
+    //    sampleGraph.printEdges();
+    //
+    //    sampleGraph.printGraph();
+    
+    return 0;
 }
