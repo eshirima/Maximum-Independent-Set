@@ -21,16 +21,5 @@ int main(int argc, const char * argv[])
     
     sampleGraph.printVertices();
     
-    //
-    //    cout << "*** DELETING VERTEX " << deleteVertex.vertexId << " ***"<< endl;
-    //
-    //    sampleGraph.removeVertex(deleteVertex);
-    //
-    //    sampleGraph.printVertices();
-    //
-    //    sampleGraph.printEdges();
-    //
-    //    sampleGraph.printGraph();
-    
     return 0;
 }
