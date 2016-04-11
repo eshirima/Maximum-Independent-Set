@@ -7,21 +7,23 @@
 #include "Graph.hpp"
 
 struct hasLessNeighbors {
-	bool operator()(const Vertex v1, const Vertex v2)const {
-		return v1.edges.size() > v2.edges.size();
+	bool operator()(const Vertex* v1, const Vertex* v2)const {
+		return v1->edges.size() > v2->edges.size();
 	}
 };
 
 
 class Set {
 public:
-	Set() {};
+	Set(Graph*);
 	
-	void buildIndependantSet(Graph* graph);
-	void heapifyGraphVertices(std::vector<Vertex>* graphVertices);
+	void buildIndependantSet();
+	void printSet();
 
 private:
-	std::vector<Vertex> set;
+	Graph* _graph;
+	std::vector<Vertex*> heap;
+	std::vector<Vertex*> set;
 
 };
 

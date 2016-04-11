@@ -43,8 +43,10 @@ public:
     void printVertices();
     void printEdges();
     
+	vector<Vertex> totalVertices;
+	int numberFlagged = 0;
+
 private:
-    vector<Vertex> totalVertices;
     vector<Edge> allEdges;
 };
 

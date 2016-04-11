@@ -99,6 +99,7 @@ void Graph::flagVertexAndNeighbours(Vertex unwantedVertex)
     {
         Vertex* unwantedVertexPointer = &totalVertices.at(distance(totalVertices.begin(), get<1>(vertexResponse)));
         unwantedVertexPointer->isDiscoverable = false;
+		numberFlagged+=1;
         
         map<int, Vertex*>vertexNeighboursMap;
         
@@ -114,6 +115,7 @@ void Graph::flagVertexAndNeighbours(Vertex unwantedVertex)
             if (vertexNeighboursMap.find(tempIterator->vertexId) != vertexNeighboursMap.end())
             {
                 tempIterator->isDiscoverable = false;
+				numberFlagged += 1;;
             }
         }
         
