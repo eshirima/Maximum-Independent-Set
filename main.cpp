@@ -14,7 +14,7 @@
 
 int main(int argc, const char * argv[])
 {
-    Graph sampleGraph = *new Graph("Graph.txt");
+    Graph sampleGraph = *new Graph("Graph copy.txt");
 	cout << "Done reading file" << endl;
     //sampleGraph.printGraph();
     
