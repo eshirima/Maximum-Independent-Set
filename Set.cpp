@@ -5,6 +5,7 @@ Set::Set(Graph* graph) {
 	for (auto itr = graph->totalVertices.begin(); itr != graph->totalVertices.end(); itr++) {
 		heap.push_back(&(*itr));
 	}
+	make_heap(heap.begin(), heap.end(), hasLessNeighbors());
 }
 
 //O(n)
@@ -18,11 +19,8 @@ void Set::buildIndependantSet() {
 
 			std::vector<Vertex*>::iterator heapPtr = heap.begin();
 			heap.erase(heapPtr);
-
-			
 		}
 		make_heap(heap.begin(), heap.end(), hasLessNeighbors());
-		//heapifyGraphVertices(&(graph->totalVertices));
 	}
 }
 
