@@ -14,19 +14,13 @@
 
 int main(int argc, const char * argv[])
 {
-    Graph sampleGraph = *new Graph("Graph copy.txt");
-	cout << "Done reading file" << endl;
-    //sampleGraph.printGraph();
+    Graph sampleGraph = *new Graph("Graph.txt");
     
-    //Vertex deleteVertex =  Vertex(41406);
-    
-    //sampleGraph.flagVertexAndNeighbours(deleteVertex);
-	int currentTime = time(nullptr);
+	size_t currentTime = clock();
 	Set testSet(&sampleGraph);
-	testSet.buildIndependantSet();
-	std::cout << time(nullptr) - currentTime << std::endl;
+	testSet.buildIndependantSet(); // O(E + V log V)
+	printf("Time taken: %.2fs\n", (double)(clock() - currentTime)/CLOCKS_PER_SEC);
 	testSet.printSet();
-    //sampleGraph.printVertices();
     
     return 0;
 }

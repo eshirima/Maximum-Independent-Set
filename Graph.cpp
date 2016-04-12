@@ -69,18 +69,6 @@ bool Graph::doesFileExist(string fileName)
 }
 
 // O(|V|)
-tuple<bool, vector<Vertex>::iterator> Graph::doesVertexExist(Vertex currentVertex)
-{
-    
-    for (vector<Vertex>::iterator it = totalVertices.begin(); it != totalVertices.end(); ++it)
-    {
-        if (it->vertexId == currentVertex.vertexId) return std::make_tuple(true, it);
-    }
-    
-    return std::make_tuple(false, totalVertices.end());
-}
-
-// O(|V|)
 void Graph::createVertices(int numberOfVertices)
 {
     for (int i = 0; i < numberOfVertices; ++i)
@@ -93,21 +81,18 @@ void Graph::createVertices(int numberOfVertices)
 // O(|V|)
 void Graph::flagVertexAndNeighbours(Vertex* unwantedVertex)
 {
-    
     if(unwantedVertex->isDiscoverable)
     {
-        Vertex* unwantedVertexPointer = unwantedVertex;
-        unwantedVertexPointer->isDiscoverable = false;
-		numberFlagged+=1;
+        unwantedVertex->isDiscoverable = false;
+		numberFlagged += 1;
         
-        // put vertex neigbours in a map
-        for (vector<Edge>::iterator tempIterator = unwantedVertexPointer->edges.begin(); tempIterator != unwantedVertexPointer->edges.end(); ++tempIterator)
+        for (vector<Edge>::iterator tempIterator = unwantedVertex->edges.begin(); tempIterator != unwantedVertex->edges.end(); ++tempIterator)
         {
-            Vertex* neigh = &totalVertices[tempIterator->start->vertexId];
+            Vertex* vertexNeighbour = &totalVertices[tempIterator->start->vertexId];
 
-            if (neigh->isDiscoverable)
+            if (vertexNeighbour->isDiscoverable)
             {
-                neigh->isDiscoverable = false;
+                vertexNeighbour->isDiscoverable = false;
 				numberFlagged += 1;;
             }
         }
