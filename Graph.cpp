@@ -91,39 +91,26 @@ void Graph::createVertices(int numberOfVertices)
 }
 
 // O(|V|)
-void Graph::flagVertexAndNeighbours(Vertex unwantedVertex)
+void Graph::flagVertexAndNeighbours(Vertex* unwantedVertex)
 {
-    tuple<bool, vector<Vertex>::iterator> vertexResponse = doesVertexExist(unwantedVertex);
     
-    if(get<0>(vertexResponse))
+    if(unwantedVertex->isDiscoverable)
     {
-        Vertex* unwantedVertexPointer = &totalVertices.at(distance(totalVertices.begin(), get<1>(vertexResponse)));
+        Vertex* unwantedVertexPointer = unwantedVertex;
         unwantedVertexPointer->isDiscoverable = false;
 		numberFlagged+=1;
-        
-        map<int, Vertex*>vertexNeighboursMap;
         
         // put vertex neigbours in a map
         for (vector<Edge>::iterator tempIterator = unwantedVertexPointer->edges.begin(); tempIterator != unwantedVertexPointer->edges.end(); ++tempIterator)
         {
-            vertexNeighboursMap[tempIterator->start->vertexId] = tempIterator->start;
-        }
-        
-        // flag the map vertices as not discoverable in the totalVertices
-        for (vector<Vertex>::iterator tempIterator = totalVertices.begin(); tempIterator != totalVertices.end(); ++tempIterator)
-        {
-            if (vertexNeighboursMap.find(tempIterator->vertexId) != vertexNeighboursMap.end())
+            Vertex* neigh = &totalVertices[tempIterator->start->vertexId];
+
+            if (neigh->isDiscoverable)
             {
-                tempIterator->isDiscoverable = false;
+                neigh->isDiscoverable = false;
 				numberFlagged += 1;;
             }
         }
-        
-        vertexNeighboursMap.clear();
-    }
-    else
-    {
-        cerr << "Vertex " << unwantedVertex.vertexId << " does not exist" << endl << endl;
     }
 }
 

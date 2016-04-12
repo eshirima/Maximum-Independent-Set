@@ -10,17 +10,16 @@ Set::Set(Graph* graph) {
 
 //O(n)
 void Set::buildIndependantSet() {
-	while (_graph->numberFlagged != _graph->totalVertices.size()) {
+	while (_graph->numberFlagged < _graph->totalVertices.size()) {
 		
 		if (heap.front()->isDiscoverable) {
 			set.push_back(heap.front());
 
-			_graph->flagVertexAndNeighbours(*heap.front());
-
-			std::vector<Vertex*>::iterator heapPtr = heap.begin();
-			heap.erase(heapPtr);
+			_graph->flagVertexAndNeighbours(heap.front());
 		}
-		make_heap(heap.begin(), heap.end(), hasLessNeighbors());
+		pop_heap(heap.begin(), heap.end(), hasLessNeighbors());
+                heap.pop_back();
+
 	}
 }
 
