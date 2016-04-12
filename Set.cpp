@@ -15,7 +15,7 @@ void Set::buildIndependantSet() {
 		if (heap.front()->isDiscoverable) {
 			set.push_back(heap.front());
 
-			_graph->flagVertexAndNeighbours(*heap.front());
+			_graph->flagVertexAndNeighbours(heap.front());
 
 			std::vector<Vertex*>::iterator heapPtr = heap.begin();
 			heap.erase(heapPtr);

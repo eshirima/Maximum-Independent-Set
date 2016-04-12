@@ -36,7 +36,7 @@ public:
     bool doesFileExist(string);
     tuple<bool, vector<Vertex>::iterator> doesVertexExist(Vertex);
     void createVertices(int);
-    void flagVertexAndNeighbours(Vertex);
+    void flagVertexAndNeighbours(Vertex*);
     
     // MARK: Print Functions
     void printGraph();
