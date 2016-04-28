@@ -14,7 +14,11 @@
 
 int main(int argc, const char * argv[])
 {
-    Graph sampleGraph = *new Graph("Graph.txt");
+//	String file;
+	//std::cout << "Enter graph name: ";
+		//std::cin >> file;
+
+    Graph sampleGraph = *new Graph("");
     
 	size_t currentTime = clock();
 	Set testSet(&sampleGraph);

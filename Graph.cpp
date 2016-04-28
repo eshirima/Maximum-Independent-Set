@@ -11,20 +11,20 @@
 // O(N)
 Graph::Graph(string fileName)
 {
-    if (doesFileExist(fileName))
+    //if (doesFileExist(fileName))
     {
-        fstream fileStreamer(fileName);
+       // fstream fileStreamer(fileName);
         string fileLine; int count = 0;
         
-        if (fileStreamer.good())
+        //if (cin.good())
         {
-            getline(fileStreamer, fileLine);
+            getline(std::cin, fileLine);
             int totalGraphVertices = stoi(fileLine);
             totalVertices.resize(totalGraphVertices);
             
             createVertices(totalGraphVertices);
             
-            while (getline(fileStreamer, fileLine))
+            while (getline(std::cin, fileLine))
             {
                 string tempString;
                 stringstream stringStream(fileLine);

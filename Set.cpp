@@ -27,6 +27,6 @@ void Set::printSet() {
 
 	for (vector<Vertex*>::iterator it = set.begin(); it != set.end(); ++it)
 	{
-		cout << "Vertex-" << (*it)->vertexId << " ";
+		cout << (*it)->vertexId << " ";
 	}
 }
